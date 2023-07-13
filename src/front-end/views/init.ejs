@@ -1,0 +1,44 @@
+<%- include('sections/_header.ejs') %>
+
+    <title>buscando.com | Buscá tu anuncio 📢 </title>
+</head>
+<body>
+    <%- include('sections/_layout_start.ejs') %>
+
+        
+        <h1 class="text-4xl md:text-6xl mb-4">
+            buscando.com
+        </h1>
+
+        
+        <!-- <div class="bg-[url('/images/san-fran-city.jpg')] bg-no-repeat rounded-xl" style="width: 700px; height: 368px;"> -->
+            
+
+        <p>
+            En que ciudad deseas buscar anuncios?
+        </p>
+        <!-- Search city -->
+        <div id="input-search" class=""></div>
+
+        
+ 
+        <script type="module">
+
+            import {html, render } from '/preact.js';
+            import { SearchCityComp } from '/components/init/search-city-comp.js'; 
+            
+            render(html`<${SearchCityComp} />`, document.getElementById('input-search'));
+
+        </script>
+
+
+
+
+
+    
+        <%- include('sections/_footer.ejs') %>
+
+    <%- include('sections/_layout_end.ejs') %>
+
+</body>
+</html>

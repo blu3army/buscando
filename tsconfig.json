@@ -1,0 +1,20 @@
+{
+    "compilerOptions": {
+        "target": "ES6",
+        "module": "ES2022",
+        "lib": ["es6"],
+        "allowJs": false,
+        "outDir": "build",
+        "rootDir": "src",
+        "noImplicitAny": true,
+        "esModuleInterop": true,
+        "moduleResolution": "Node16"
+    },
+    "include": [
+        "src/**/*.ts",
+        "src/**/*.ejs"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}

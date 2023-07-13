@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+body{
+    color: rgb(80, 80, 80);
+}
+
+
+.search-input{
+    width: 99%;
+    max-width: 500px;
+}
