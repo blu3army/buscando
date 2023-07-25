@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { anunciosDB } from "../../front-end/databases/anuncios-db.js";
 export const router = Router();
 //Init Page
 router.get('/', (req, res) => {
@@ -7,9 +8,9 @@ router.get('/', (req, res) => {
 //Home Page
 router.get('/home/:cityCode?', (req, res) => {
     const topic = req.query.topic || null;
-    const subtopic = req.query.subtopic || null;
+    const area = req.query.area || null;
     const cat = req.query.cat || null;
-    res.render('home', { cityCode: req.params.cityCode, topic, subtopic, cat });
+    res.render('home', { cityCode: req.params.cityCode, topic, area, cat, anunciosData: anunciosDB });
 });
 router.get('/results', (req, res) => {
     res.render('results');

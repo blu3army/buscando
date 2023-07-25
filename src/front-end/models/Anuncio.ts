@@ -11,7 +11,7 @@ interface AnuncioInterface{
     descHTML:       string;
     date:           number;
 
-    categoriaTree:  Category[];
+    categoriaTree?:  Category[];
     author: User;
     
     city: City;
@@ -31,7 +31,7 @@ export class Anuncio implements AnuncioInterface {
     desc: string;
     descHTML: string;
     date: number;
-    categoriaTree: Category[];
+    categoriaTree?: Category[];
     author: User;
     city: City;
     location: { lat: number; lng: number; };

@@ -1,0 +1,52 @@
+<% for( let i = 0; i < anunciosData.length; i++ ) { %>
+
+    <div class="mb-10 ">
+        <%# Title %>
+        <h1 class="text-blue-500 font-semibold cursor-pointer md:truncate mb-2">
+            <%= anunciosData[i].title %>
+        </h1>
+        
+        <%# User & Date %>
+        <p class="text-sm text-stone-500 flex flex-wrap">
+            <span class="mx-1.5" id="date-<%= anunciosData[i].date %>"></span>
+            
+            <span class="mx-1.5">
+                <i class="fa-solid fa-city"></i> <%= anunciosData[i].city.name %>
+            </span>
+            <span class="mx-1.5">
+                <i class="fa-solid fa-location-pin"></i> Ubicación
+            </span>
+
+            <span class="mx-1.5">
+                by @<%= anunciosData[i].author.username %>
+            </span>
+        </p>
+
+        <%# City & Location %>
+        <p class="text-sm text-stone-500">
+        </p>
+
+        <%# Description %>        
+        <p class="text-sm my-2">
+            <%= anunciosData[i].desc %>
+        </p>
+
+        <%# Images %>
+        <div class="flex flex-wrap">
+            <img src="/images/focus-1.jpg" class="w-40"/>
+            <img src="/images/focus-2.jpg" class="w-40"/>
+            <img src="/images/focus-3.webp" class="w-40"/>
+        </div>
+        
+    </div>
+
+
+    <script type="module">
+        import { render, html } from "/preact.js";
+        import { ParseDateComp } from "/components/home/anuncios-comp.js";
+    
+        render( html`<${ParseDateComp} date="<%= anunciosData[i].date %>" />` , document.getElementById("date-<%= anunciosData[i].date %>") );
+    
+    </script>
+
+<% } %>

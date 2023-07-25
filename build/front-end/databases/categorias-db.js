@@ -153,6 +153,55 @@ export let categories = [
         level: 1,
         parent_id: 20,
     }),
+    new Category({
+        id: 22,
+        code: 'motorbikes',
+        name: 'Motocicletas',
+        level: 1,
+        parent_id: 2,
+    }),
+    new Category({
+        id: 23,
+        code: 'trucks',
+        name: 'Camiones',
+        level: 1,
+        parent_id: 2,
+    }),
+    new Category({
+        id: 24,
+        code: 'trucks_loads',
+        name: 'De carga',
+        level: 2,
+        parent_id: 23,
+    }),
+    new Category({
+        id: 25,
+        code: 'motorbykes_simple',
+        name: 'Chicas',
+        level: 2,
+        parent_id: 22,
+    }),
+    new Category({
+        id: 26,
+        code: 'motorbykes_race',
+        name: 'De carrera',
+        level: 2,
+        parent_id: 22,
+    }),
+    new Category({
+        id: 27,
+        code: 'home',
+        name: 'Hogar',
+        level: 1,
+        parent_id: 2,
+    }),
+    new Category({
+        id: 28,
+        code: 'garden',
+        name: 'Jardinería',
+        level: 2,
+        parent_id: 27,
+    }),
 ].sort((a, b) => {
     if (a.id > b.id) {
         return 1;

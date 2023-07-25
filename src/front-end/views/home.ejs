@@ -16,14 +16,13 @@
         </a>
     </div>
 
-    <div class="flex p-2">
-        <div class=" w-28 h-28 md:w-40 md:h-40 overflow-hidden rounded-full">
+    <div class="flex p-2 items-center">
+        <div class=" w-28 h-28 md:w-28 md:h-28 overflow-hidden rounded-full">
             <img src="/images/seattle.jpg" class="w-52" />
         </div>
         <div class="p-2">
-            <h1 class="text-xl md:text-3xl">Oberá, Misiones</h1>
+            <h1 class="text-xl md:text-2xl">Oberá, Misiones</h1>
             <div class="city-info">
-
             </div>
         </div>
 
@@ -33,51 +32,61 @@
 
 
 
-    <div class="border-t border-stone-200">
+    <div class="border-t border-stone-200 py-5">
 
-    <!-- Topic     -->
-    <% if (topic) { %>
+        <!-- Topic     -->
+        <% if (topic) { %>
+            
         
-        <div class="text-sm text-blue-500 p-2 font-bold">
-            <a href="/home/<%= cityCode %>">
-                <i class="fa-solid fa-angle-left"></i> Cambiar tema
-            </a>
+            <div id="topic-comp"></div>
+
+            <script type="module">
+                import {html, render} from '/preact.js';
+                
+                import { TopicComp } from '/components/home/topic-comp.js';
+                
+                
+                render(html`<${TopicComp}   cityCode="<%= cityCode %>" 
+                                            topicCode="<%= topic %>" 
+                                            areaCode="<%= area %>"
+                                            catCode="<%= cat %>"/>`, document.getElementById('topic-comp') );
+                
+            </script>
+            
+
+
+        <!-- Topics -->
+        <% } else { %>
+            <!-- <h2 class="text-2xl text-center">Temas generales</h2> -->
+        
+            <div id="topics-comp">
+                
+            </div>
+
+            <script type="module">
+                import { html, render} from '/preact.js';
+                import { TopicsComp } from '/components/home/topics-comp.js';
+            
+                
+                render(html`<${TopicsComp} cityCode="<%= cityCode %>" />`, document.getElementById('topics-comp'));
+                
+                
+            </script>
+            
+        <% } %>
+
+
+
+
+        <%# Lista de Anuncios %>
+        <div class="py-2 px-4 max-w-3xl mt-5">
+            <%- include('home/_anuncio.ejs') %>            
         </div>
 
-        <div id="topic-comp"></div>
-
-        <script type="module">
-            import {html, render} from '/preact.js';
-            
-            import { TopicComp } from '/components/home/topic-comp.js';
-            
-            
-            render(html`<${TopicComp} cityCode="<%= cityCode %>" topicCode="<%= topic %>" />`, document.getElementById('topic-comp') );
-            
-        </script>
-           
 
 
-    <!-- Topics -->
-    <% } else { %>
-        <h2 class="text-2xl text-center">Temas generales</h2>
-    
-        <div id="menu-categories-comp">
-            
-        </div>
 
-        <script type="module">
-            import {html, render} from '/preact.js';
-            import { MenuCategoriesComp } from '/components/home/menu-categories-comp.js';
-           
-            
-            render(html`<${MenuCategoriesComp} cityCode="<%= cityCode %>" />`, document.getElementById('menu-categories-comp'));
-            
-            
-        </script>
-        
-    <% } %>
-    
+
     </div>  
     
     

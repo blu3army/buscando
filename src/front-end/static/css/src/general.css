@@ -12,3 +12,13 @@ body{
     width: 99%;
     max-width: 500px;
 }
+
+
+a:hover{
+    /* color:#A855F7; */
+    color: #3B82F6;
+}
+
+h1,h2,h3,h4{
+    user-select: none;
+}
