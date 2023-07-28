@@ -3,10 +3,10 @@ import { Category } from "../../models/Categoria.js";
 import { html, useEffect, useState } from "../../preact.js";
 
 
-export function TopicComp({cityCode, topicCode, areaCode, catCode}:{cityCode:string, topicCode?:string, areaCode?:string, catCode?:string}) {
+export function TopicComp({context, cityCode, topicCode, areaCode, catCode}:{context:string, cityCode:string, topicCode?:string, areaCode?:string, catCode?:string}) {
 
     
-    const url = `/home/${cityCode}?topic=${topicCode}`;
+    const url = `/${context}/${cityCode}?topic=${topicCode}`;
     
 
     const [topic, setTopic]:[topic:Category, setTopic:any] = useState(null);
@@ -30,7 +30,7 @@ export function TopicComp({cityCode, topicCode, areaCode, catCode}:{cityCode:str
         <!-- Path -->
         <h2 class="md:text-lg">
             
-            <a href="/home/${cityCode}" class="mr-2">
+            <a href="/${context}/${cityCode}" class="mr-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
             
@@ -49,14 +49,14 @@ export function TopicComp({cityCode, topicCode, areaCode, catCode}:{cityCode:str
                     topic?.children?.map( (area) =>{
                         return html`<li class="mx-2">
                             
-                            <a class="font-semibold" href="/home/${cityCode}?topic=${topic.code}&area=${area.code}">${area.name}</a>
+                            <a class="font-semibold" href="/${context}/${cityCode}?topic=${topic.code}&area=${area.code}">${area.name}</a>
                             
                             
                             <ul class="ml-2 text-sm">
                                 ${
                                     area.children?.map(cat=>{
                                         return html`<li>
-                                            <a href="/home/${cityCode}?topic=${topic.code}&area=${area.code}&cat=${cat.code}">    
+                                            <a href="/${context}/${cityCode}?topic=${topic.code}&area=${area.code}&cat=${cat.code}">    
                                                 ${cat.name}
                                             </a>
                                         </li>`

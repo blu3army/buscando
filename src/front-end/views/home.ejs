@@ -1,166 +1,44 @@
 <%- include('sections/_header.ejs') %>
-    
 
-    <title>Home | Buscando</title>
+    <title>buscando.com | Buscá tu anuncio 📢 </title>
 </head>
 <body>
-
     <%- include('sections/_layout_start.ejs') %>
-    
-    
 
-    <!-- City Present -->
-    <div class="text-sm text-blue-500 p-2 font-bold">
-        <a href="/">
-            <i class="fa-solid fa-angle-left"></i> Cambiar ciudad
-        </a>
-    </div>
-
-    <div class="flex p-2 items-center">
-        <div class=" w-28 h-28 md:w-28 md:h-28 overflow-hidden rounded-full">
-            <img src="/images/seattle.jpg" class="w-52" />
-        </div>
-        <div class="p-2">
-            <h1 class="text-xl md:text-2xl">Oberá, Misiones</h1>
-            <div class="city-info">
-            </div>
-        </div>
-
-    </div>
-
-
-
-
-    <h1 id="right">
-
-    </h1>
-
-
-    <div class="border-t border-stone-200 py-5">
-
-        <!-- Topic     -->
-        <% if (topic) { %>
-            
         
-            <div id="topic-comp"></div>
+        <h1 class="text-4xl md:text-6xl mb-4">
+            buscando.com
+        </h1>
 
-            <script type="module">
-                import {html, render} from '/preact.js';
-                
-                import { TopicComp } from '/components/home/topic-comp.js';
-                
-                
-                render(html`<${TopicComp}   cityCode="<%= cityCode %>" 
-                                            topicCode="<%= topic %>" 
-                                            areaCode="<%= area %>"
-                                            catCode="<%= cat %>"/>`, document.getElementById('topic-comp') );
-                
-            </script>
-            
-
-
-        <!-- Topics -->
-        <% } else { %>
-            <!-- <h2 class="text-2xl text-center">Temas generales</h2> -->
         
-            <div id="root-div" class="h-20 relative overflow-hidden bg-stone-100">
-                
-            </div>
-
-            <script type="module">
-                import { html, render} from '/preact.js';
-                import { TopicsComp } from '/components/home/topics-comp.js';
+        <!-- <div class="bg-[url('/images/san-fran-city.jpg')] bg-no-repeat rounded-xl" style="width: 700px; height: 368px;"> -->
             
-             
-                render(html`<${TopicsComp} cityCode="<%= cityCode %>" />`, document.getElementById('root-div'));
-                
-                const rootDiv = document.getElementById('root-div');
-                const innerDiv = document.getElementById('inner-div');
-                
-                const divTotalWidth = rootDiv.clientWidth;
+
+        <p>
+            En que ciudad deseas buscar anuncios?
+        </p>
+        <!-- Search city -->
+        <div id="input-search" class=""></div>
+
+        
+ 
+        <script type="module">
+
+            import {html, render } from '/preact.js';
+            import { SearchCityComp } from '/components/init/search-city-comp.js'; 
             
-                let touchStartPoint = 0;
-                let innerXStart = 0;
+            render(html`<${SearchCityComp} />`, document.getElementById('input-search'));
 
-                function update(e) {
-                    
-                    //refresh point
-                    const touchNewPoint =  e.touches[0].clientX;
-                    const diff = touchNewPoint - touchStartPoint + innerXStart;
-                    
-                    innerDiv.style.left = diff + "px";
-                    
-                }
-
-                rootDiv.addEventListener('touchstart', e =>{
-                    
-                    //eliminamos la transition, así se hace el movimiento con el touchmove
-                    innerDiv.style.transition = "";
-                    touchStartPoint = 0;
-                    innerXStart = innerDiv.offsetLeft;
-                    touchStartPoint = e.touches[0].clientX;
-                                       
-                    rootDiv.addEventListener('touchmove', update);
-
-                });
-
-                window.addEventListener('touchend', ()=>{
-                    rootDiv.removeEventListener('touchmove', update);
-                    
-                    const actualInnerOffsetLeft = innerDiv.offsetLeft;
-                    const rootWidth = rootDiv.clientWidth;
-                    const innertWidth = innerDiv.getBoundingClientRect().width;
-                    const actualInnerOffsetRight = rootWidth - innertWidth - actualInnerOffsetLeft;
-
-              
-                  
-                    //en caso de exceder el Left
-                    if (actualInnerOffsetLeft > 1) {                        
-                        innerDiv.style.transition = "all 0.5s";
-                        innerDiv.style.left = 0 + "px";                        
-                    }
-                    //en caso de exceder el Right
-                    else if(actualInnerOffsetRight > 0){
-                        innerDiv.style.transition = "all 0.5s";
-                        innerDiv.style.left = actualInnerOffsetLeft + actualInnerOffsetRight + "px";
-                    }
-                });
-
-                
-                
-            </script>
-            
-        <% } %>
-
-
-
-
-        <%# Lista de Anuncios %>
-        <div class="py-2 px-4 max-w-3xl mt-5">
-            <%- include('home/_anuncio.ejs') %>            
-        </div>
-
-
-
-
-
-    </div>  
-    
-    
-
+        </script>
 
 
 
 
 
     
-    
-    <%- include('sections/_footer.ejs') %>
+        <%- include('sections/_footer.ejs') %>
+
     <%- include('sections/_layout_end.ejs') %>
 
-    
-
-
-    
 </body>
 </html>

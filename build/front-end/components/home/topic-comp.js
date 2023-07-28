@@ -1,8 +1,8 @@
 import { categoryTree } from "../../databases/categorias-db.js";
 import { html, useEffect, useState } from "../../preact.js";
-export function TopicComp({ cityCode, topicCode, areaCode, catCode }) {
+export function TopicComp({ context, cityCode, topicCode, areaCode, catCode }) {
     var _a;
-    const url = `/home/${cityCode}?topic=${topicCode}`;
+    const url = `/${context}/${cityCode}?topic=${topicCode}`;
     const [topic, setTopic] = useState(null);
     const [area, setArea] = useState(null);
     const [cat, setCat] = useState(null);
@@ -20,7 +20,7 @@ export function TopicComp({ cityCode, topicCode, areaCode, catCode }) {
         <!-- Path -->
         <h2 class="md:text-lg">
             
-            <a href="/home/${cityCode}" class="mr-2">
+            <a href="/${context}/${cityCode}" class="mr-2">
                 <i class="fa-solid fa-angle-left"></i>
             </a>
             
@@ -38,13 +38,13 @@ export function TopicComp({ cityCode, topicCode, areaCode, catCode }) {
             var _a;
             return html `<li class="mx-2">
                             
-                            <a class="font-semibold" href="/home/${cityCode}?topic=${topic.code}&area=${area.code}">${area.name}</a>
+                            <a class="font-semibold" href="/${context}/${cityCode}?topic=${topic.code}&area=${area.code}">${area.name}</a>
                             
                             
                             <ul class="ml-2 text-sm">
                                 ${(_a = area.children) === null || _a === void 0 ? void 0 : _a.map(cat => {
                 return html `<li>
-                                            <a href="/home/${cityCode}?topic=${topic.code}&area=${area.code}&cat=${cat.code}">    
+                                            <a href="/${context}/${cityCode}?topic=${topic.code}&area=${area.code}&cat=${cat.code}">    
                                                 ${cat.name}
                                             </a>
                                         </li>`;
