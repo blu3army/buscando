@@ -8,10 +8,11 @@ body{
 }
 
 
+/* Inputs */
 .search-input{
-    width: 99%;
-    max-width: 500px;
+    
 }
+
 
 
 a:hover{

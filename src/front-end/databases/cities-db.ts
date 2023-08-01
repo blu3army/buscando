@@ -31,7 +31,7 @@ export const citiesDB : City[] = [
     }),
     new City({
         code: 'ituzaingo',
-        name: '',
+        name: 'Ituzaingó',
         state: 'corrientes',
         lat: -27.588440018746144, 
         lng: -56.69000977800314

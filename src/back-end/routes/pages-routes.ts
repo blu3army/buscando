@@ -7,8 +7,12 @@ export const router = Router();
 //Home Page
 router.get('/', (req, res)=>{
 
+    const topic = req.query.topic || null;
+    const area = req.query.area || null;
+    const cat = req.query.cat || null;
 
-    res.render('home' , { name: 'Nikolaiiii'});
+
+    res.render('home' , { topic, area, cat, anunciosData: anunciosDB });
 
 
 });

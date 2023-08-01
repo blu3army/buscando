@@ -9,7 +9,7 @@ export function SearchCityComp() {
             <ul>
                 ${citiesDB.map(city => {
         return html `<p>
-                            <a href="/home/${city.code}">${city.name}</a>
+                            <a href="/city/${city.code}">${city.name}</a>
                         </p>`;
     })}
             </ul>

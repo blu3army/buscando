@@ -3,7 +3,10 @@ import { anunciosDB } from "../../front-end/databases/anuncios-db.js";
 export const router = Router();
 //Home Page
 router.get('/', (req, res) => {
-    res.render('home', { name: 'Nikolaiiii' });
+    const topic = req.query.topic || null;
+    const area = req.query.area || null;
+    const cat = req.query.cat || null;
+    res.render('home', { topic, area, cat, anunciosData: anunciosDB });
 });
 //Home Page
 router.get('/city/:cityCode?', (req, res) => {

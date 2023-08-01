@@ -202,6 +202,34 @@ export let categories = [
         level: 2,
         parent_id: 27,
     }),
+    new Category({
+        id: 29,
+        code: 'suv',
+        name: 'Suvs',
+        level: 2,
+        parent_id: 5,
+    }),
+    new Category({
+        id: 30,
+        code: 'sedan',
+        name: 'Sedan',
+        level: 2,
+        parent_id: 5,
+    }),
+    new Category({
+        id: 31,
+        code: 'hatchback',
+        name: 'Hatchback',
+        level: 5,
+        parent_id: 27,
+    }),
+    new Category({
+        id: 32,
+        code: 'utils',
+        name: 'Utilitario',
+        level: 2,
+        parent_id: 5,
+    }),
 ].sort((a, b) => {
     if (a.id > b.id) {
         return 1;

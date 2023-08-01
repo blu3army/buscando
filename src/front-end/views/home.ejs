@@ -15,23 +15,111 @@
             
 
         <p>
-            En que ciudad deseas buscar anuncios?
+            Buscar en una ciudad, por usuario o palabra clave
         </p>
         <!-- Search city -->
-        <div id="input-search" class=""></div>
+        <div id="input-search" class="">
+            Cargando...
+        </div>
 
         
  
         <script type="module">
 
             import {html, render } from '/preact.js';
-            import { SearchCityComp } from '/components/init/search-city-comp.js'; 
+            import { SearchComp } from '/components/home/search-comp.js'; 
             
-            render(html`<${SearchCityComp} />`, document.getElementById('input-search'));
+            const searchElem =  document.getElementById('input-search');
+            searchElem.innerHTML = '';
+
+            render(html`<${SearchComp} />`, searchElem);
 
         </script>
 
 
+
+
+
+
+
+
+        
+        <!-- Categories Handler -->
+        <h1 class="pl-2 text-2xl my-3">
+            Algún tema que te interese?
+        </h1>
+        <div class="z-20">
+            
+            <%- include('../functions/effects/touch-slider-effect.ejs') %>
+
+
+            <!-- Topic     -->
+            <% if (topic) { %>
+                
+            
+                <div id="topic-comp"></div>
+
+                <script type="module">
+                    import { html, render } from '/preact.js';                
+                    import { TopicComp } from '/components/home/topic-comp.js';
+                                    
+                    render(html`<${TopicComp}   context=""                    
+                                                topicCode="<%= topic %>" 
+                                                areaCode="<%= area %>"
+                                                catCode="<%= cat %>"/>`, document.getElementById('topic-comp') );
+                    
+                    
+                    touchSliderEffect();   
+                    
+                </script>
+                
+
+
+            <!-- Topics -->
+            <% } else { %>
+                
+                
+                        
+                <div id="root-div" class="h-20 relative overflow-hidden bg-stone-100"></div>
+
+                <script type="module">
+                    import { html, render} from '/preact.js';
+                    import { TopicsComp } from '/components/home/topics-comp.js';
+                        
+                    render(html`<${TopicsComp} context=""  />`, document.getElementById('root-div'));
+                    
+                    touchSliderEffect();                
+                    
+                </script>
+
+                
+            <% } %>
+
+
+
+
+            
+
+
+
+
+
+        </div>  
+
+
+
+
+
+        
+        
+        
+        <%# Lista de Anuncios %>
+        <!-- <h1 class="pl-2 text-2xl my-5">
+            Que hay en Argentina 🇦🇷?
+        </h1> -->
+        <div class="px-4 max-w-3xl mt-5">
+            <%- include('home/_anuncios.ejs') %>            
+        </div>
 
 
 
