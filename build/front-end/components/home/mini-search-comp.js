@@ -1,22 +1,15 @@
 import { citiesDB } from "../../databases/cities-db.js";
 import { html, useState } from "../../preact.js";
-
-export function SearchComp(){
-
-
+export function SearchComp() {
     const [text, setText] = useState('');
-
-    const change = (e:any)=>{
-        
-        console.log('input change' , e.target.value);
+    const change = (e) => {
+        console.log('input change', e.target.value);
         setText(e.target.value);
-    }
-
-    const cleanText = ()=>{
+    };
+    const cleanText = () => {
         setText('');
     };
-
-    return html`
+    return html `
         <div class="w-full text-center md:text-left relative" >
             
             <!-- Input -->
@@ -31,40 +24,31 @@ export function SearchComp(){
 
             
                 <span class="border border-stone-200 p-2 rounded-r-xl w-10 text-center " onClick=${cleanText}>
-                    ${
-                        text.length > 0 ?  html`<i class="fa-solid fa-xmark cursor-pointer"></i>` : html`<span >🔍</span>`
-                    }                
+                    ${text.length > 0 ? html `<i class="fa-solid fa-xmark cursor-pointer"></i>` : html `<span >🔍</span>`}                
                 </span>
             </div>
             
 
 
             <!-- Results -->
-            ${
-                text.length > 3 &&
-                html`<ul class="absolute mt-0.5 p-2 bg-white text-stone-500  border shadow-lg border-stone-100 rounded-xl w-full z-30" style="max-width: 500px;">
+            ${text.length > 3 &&
+        html `<ul class="absolute mt-0.5 p-2 bg-white text-stone-500  border shadow-lg border-stone-100 rounded-xl w-full z-30" style="max-width: 500px;">
                     
-                    <a href="/results/?text=${text}">
+                    <a href="/query/${text}">
                         <li class="py-1">
                         🔍 ${text}   
                         </li>
                     </a>
                     
                     
-                    ${
-                        citiesDB.map((city,i)=>
-                            html`<a href="/results/?cityCode=${city.code}">
+                    ${citiesDB.map((city, i) => html `<a href="/city/${city.code}">
                                 <li class="py-1" key=${i}>
                                     <i class="fa-solid fa-city text-xs"></i> <span>${city.name}</span>
                                 </li>
-                            </a>`
-                        )
-                    }
+                            </a>`)}
                     
 
-                </ul>`
-            }
+                </ul>`}
         </div>
-    `
-
+    `;
 }

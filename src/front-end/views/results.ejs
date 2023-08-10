@@ -1,1 +1,95 @@
-<h2>Results</h2>
+<%- include('sections/_header.ejs') %>
+
+    <title>buscando.com | Buscá tu anuncio 📢 </title>
+</head>
+<body>
+    <%- include('sections/_layout_start.ejs') %>
+
+
+    <h1 class="text-xs">Text: <%= text %></h1>
+    <h1 class="text-xs">City: <%= cityCode %></h1>
+    <h1 class="text-xs">Topic: <%= topic %></h1>
+    <h1 class="text-xs">Area: <%= area %></h1>
+    <h1 class="text-xs">Cat: <%= cat %></h1>
+    
+
+    <div class="border-t border-stone-200 py-5">
+        
+        <%- include('../functions/effects/touch-slider-effect.ejs') %>
+
+
+        <!-- Topic     -->
+        <% if (topic) { %>
+            
+        
+            <div id="topic-comp"></div>
+
+            <script type="module">
+                import { html, render } from '/preact.js';                
+                import { TopicComp } from '/components/home/topic-comp.js';
+
+                const queries_ = {
+                    text: "<%= text %>",
+                    cityCode: "<%= cityCode %>",                 
+                    topic: "<%= topic %>" ,
+                    area: "<%= area %>",
+                    cat: "<%= cat %>"
+                };
+                                
+                render(html`<${TopicComp}   context="/results" queries=${queries_} />`, document.getElementById('topic-comp') );
+                
+                
+                touchSliderEffect();   
+                
+            </script>
+            
+
+
+        <!-- Topics -->
+        <% } else { %>
+            
+            
+                    
+            <div id="root-div" class="h-20 relative overflow-hidden bg-stone-100"></div>
+
+            <script type="module">
+                import { html, render} from '/preact.js';
+                import { TopicsComp } from '/components/home/topics-comp.js';
+                
+                
+                const queries = {
+                    text: "<%= text %>",
+                    cityCode: "<%= cityCode %>"
+                };
+
+                render(html`<${TopicsComp} context="/results" queries=${queries} />`, document.getElementById('root-div'));
+                
+                touchSliderEffect();                
+                
+            </script>
+
+            
+        <% } %>
+
+
+
+
+        
+
+
+
+
+
+    </div>  
+
+
+
+
+
+
+
+    <%- include('sections/_footer.ejs') %>
+    <%- include('sections/_layout_end.ejs') %>
+
+</body>
+</html>

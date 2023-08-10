@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 
+
+
 body{
     color: rgb(80, 80, 80);
 }
@@ -11,6 +13,30 @@ body{
 /* Inputs */
 .search-input{
     
+}
+
+
+/* Buttons */
+button{
+    @apply p-2 font-semibold rounded-md shadow-lg active:shadow-none w-32;
+}
+    
+.button-1{
+    @apply  bg-sky-400 text-white;
+}
+.button-2{
+    @apply  bg-blue-500 text-white;
+}
+.button-3{
+    @apply bg-purple-600 text-white;
+}
+
+.button-4{
+    @apply  bg-stone-300 text-stone-700;
+}
+
+.button-5{
+    @apply  bg-rose-400 text-white;
 }
 
 

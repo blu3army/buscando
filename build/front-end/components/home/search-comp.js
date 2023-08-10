@@ -18,11 +18,13 @@ export function SearchComp() {
                 <input  class="bg-stone-200 p-2 rounded-l-xl search-input outline-none flex-grow"
                         value="${text}"
                         onInput=${change}
-                        placeholder="Escribí una ciudad, un usuario o palabra clave..." />
+                        placeholder="Escribí tu ciudad o algún usuario" />
+
+                
 
             
                 <span class="border border-stone-200 p-2 rounded-r-xl w-10 text-center " onClick=${cleanText}>
-                    ${text.length > 3 ? html `<i class="fa-solid fa-xmark cursor-pointer"></i>` : html `<span >🔍</span>`}                
+                    ${text.length > 0 ? html `<i class="fa-solid fa-xmark cursor-pointer"></i>` : html `<span >🔍</span>`}                
                 </span>
             </div>
             
@@ -30,16 +32,18 @@ export function SearchComp() {
 
             <!-- Results -->
             ${text.length > 3 &&
-        html `<ul class="absolute mt-0.5 p-2 bg-white text-stone-500  border shadow-lg border-stone-100 rounded-xl w-full z-30" style="max-width: 650px;">
-                    <a>
+        html `<ul class="absolute mt-0.5 p-2 bg-white text-stone-500  border shadow-lg border-stone-100 rounded-xl w-full z-30" style="max-width: 500px;">
+                    
+                    <a href="/results/?text=${text}">
                         <li class="py-1">
                         🔍 ${text}   
                         </li>
                     </a>
                     
-                    ${citiesDB.map((city, i) => html `<a href="/city/${city.code}">
+                    
+                    ${citiesDB.map((city, i) => html `<a href="/results/?cityCode=${city.code}">
                                 <li class="py-1" key=${i}>
-                                    <i class="fa-solid fa-city"></i> <span>${city.name}</span>
+                                    <i class="fa-solid fa-city text-xs"></i> <span>${city.name}</span>
                                 </li>
                             </a>`)}
                     

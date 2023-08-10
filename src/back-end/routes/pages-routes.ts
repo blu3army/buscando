@@ -30,9 +30,29 @@ router.get('/city/:cityCode?', (req, res)=>{
 
 });
 
+router.get('/query/:query?', (req,res)=>{
+
+    const query = req.params.query;
+
+    res.render('query', {query});
+
+});
+
 router.get('/results', (req,res)=>{
 
-    res.render('results');
+    const text = req.query.text || null;
+    const cityCode = req.query.cityCode || null;
+    const topic = req.query.topic || null;
+    const area = req.query.area || null;
+    const cat = req.query.cat || null;
+
+    res.render('results', {
+        text,
+        cityCode,
+        topic,
+        area,
+        cat,
+    });
 
 });
 
